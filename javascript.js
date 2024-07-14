@@ -1,3 +1,9 @@
+/* 
+    Global variables
+*/
+let humanScore = 0
+let computerScore = 0
+
 
 /*
     This function generate a random value of "rock" "paper" or "scissor".
@@ -28,4 +34,41 @@ function getHumanChoice(){
         choice = choice.toLocaleLowerCase();
     }
     return choice
+}
+
+/*
+    This function take human and computer choices as argument, play a single round, and log the winner
+ */
+function playRound(humanChoice, computerChoice){
+    // 9 possible outcome, but draw take 3 out which left 6 conditions
+    if(humanChoice === computerChoice){
+        console.log('tie!')
+    }
+    else if(humanChoice === 'rock' && computerChoice === 'scissor'){
+        console.log('human win!')
+        humanScore++
+    }
+    else if(humanChoice === 'paper' && computerChoice === 'rock'){
+        console.log('human win!')
+        humanScore++
+    }
+    else if(humanChoice === 'scissor' && computerChoice === 'paper'){
+        console.log('human win!')
+        humanScore++
+    }
+    else if(humanChoice === 'rock' && computerChoice === 'paper'){
+        console.log('computer win!')
+        computerScore++
+    }
+    else if(humanChoice === 'paper' && computerChoice === 'scissor'){
+        console.log('computer win!')
+        computerScore++
+    }
+    else if(humanChoice === 'scissor' && computerChoice === 'rock'){
+        console.log('computer win!')
+        computerScore++
+    }
+    else{
+        throw new Error('ERROR UNKNOWN OUTCOME')
+    }
 }
