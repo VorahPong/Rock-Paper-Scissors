@@ -1,9 +1,3 @@
-/* 
-    Global variables
-*/
-let humanScore = 0
-let computerScore = 0
-
 
 /*
     This function generate a random value of "rock" "paper" or "scissor".
@@ -37,38 +31,69 @@ function getHumanChoice(){
 }
 
 /*
-    This function take human and computer choices as argument, play a single round, and log the winner
- */
-function playRound(humanChoice, computerChoice){
-    // 9 possible outcome, but draw take 3 out which left 6 conditions
-    if(humanChoice === computerChoice){
-        console.log('tie!')
+
+*/
+function playGame(){
+    /* 
+        Score variables
+    */
+    let humanScore = 0
+    let computerScore = 0
+
+    /*
+        This function take human and computer choices as argument, play a single round, and log the winner
+    */
+    function playRound(humanChoice, computerChoice){
+        // 9 possible outcome, but draw take 3 out which left 6 conditions
+        if(humanChoice === computerChoice){
+            console.log('tie!')
+        }
+        else if(humanChoice === 'rock' && computerChoice === 'scissor'){
+            console.log('human win!')
+            humanScore++
+        }
+        else if(humanChoice === 'paper' && computerChoice === 'rock'){
+            console.log('human win!')
+            humanScore++
+        }
+        else if(humanChoice === 'scissor' && computerChoice === 'paper'){
+            console.log('human win!')
+            humanScore++
+        }
+        else if(humanChoice === 'rock' && computerChoice === 'paper'){
+            console.log('computer win!')
+            computerScore++
+        }
+        else if(humanChoice === 'paper' && computerChoice === 'scissor'){
+            console.log('computer win!')
+            computerScore++
+        }
+        else if(humanChoice === 'scissor' && computerChoice === 'rock'){
+            console.log('computer win!')
+            computerScore++
+        }
+        else{
+            throw new Error('ERROR UNKNOWN OUTCOME')
+        }
     }
-    else if(humanChoice === 'rock' && computerChoice === 'scissor'){
-        console.log('human win!')
-        humanScore++
+    
+    // play 5 rounds
+    for(let index = 0; index < 5; index++){
+        console.log(`The current score are 
+        Human:      ${humanScore}
+        Computer:   ${computerScore}`)
+        playRound(getHumanChoice(), getComputerChoice())
     }
-    else if(humanChoice === 'paper' && computerChoice === 'rock'){
-        console.log('human win!')
-        humanScore++
+    console.log(`The final score are 
+        Human:      ${humanScore}
+        Computer:   ${computerScore}`)
+    if(humanScore > computerScore){
+        console.log("THE FINAL WINNER IS HUMAN!")
     }
-    else if(humanChoice === 'scissor' && computerChoice === 'paper'){
-        console.log('human win!')
-        humanScore++
-    }
-    else if(humanChoice === 'rock' && computerChoice === 'paper'){
-        console.log('computer win!')
-        computerScore++
-    }
-    else if(humanChoice === 'paper' && computerChoice === 'scissor'){
-        console.log('computer win!')
-        computerScore++
-    }
-    else if(humanChoice === 'scissor' && computerChoice === 'rock'){
-        console.log('computer win!')
-        computerScore++
+    else if (computerScore > humanScore){
+        console.log("THE FINAL WINNER IS COMPUTER!")
     }
     else{
-        throw new Error('ERROR UNKNOWN OUTCOME')
+        console.log("THE GAME ENDED IN TIE!")
     }
 }
