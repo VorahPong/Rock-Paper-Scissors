@@ -1,4 +1,5 @@
 
+
 /*
     This function generate a random value of "rock" "paper" or "scissor".
 */
@@ -76,24 +77,30 @@ function playGame(){
             throw new Error('ERROR UNKNOWN OUTCOME')
         }
     }
-    
-    // play 5 rounds
-    for(let index = 0; index < 5; index++){
-        console.log(`The current score are 
-        Human:      ${humanScore}
-        Computer:   ${computerScore}`)
-        playRound(getHumanChoice(), getComputerChoice())
-    }
-    console.log(`The final score are 
-        Human:      ${humanScore}
-        Computer:   ${computerScore}`)
-    if(humanScore > computerScore){
-        console.log("THE FINAL WINNER IS HUMAN!")
-    }
-    else if (computerScore > humanScore){
-        console.log("THE FINAL WINNER IS COMPUTER!")
-    }
-    else{
-        console.log("THE GAME ENDED IN TIE!")
-    }
+
+    const selectChoice = document.querySelectorAll('button');
+
+    selectChoice.forEach((button) => {
+        button.addEventListener('click', function (){
+            switch (button.id) {
+                case 'rock':
+                    console.log('rock has been selected');
+                    playRound('rock', getComputerChoice());
+                    break;
+                case 'paper':
+                    console.log('paper has been selected');
+                    playRound('paper', getComputerChoice());
+                    break;
+                case 'scissor':
+                    console.log('scissor has been selected');
+                    playRound('scissor', getComputerChoice());
+                    break;
+                default:
+            }
+        });
+    });   
 }
+
+playGame();
+
+
