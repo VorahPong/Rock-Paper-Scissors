@@ -44,34 +44,35 @@ function playGame(){
     /*
         This function take human and computer choices as argument, play a single round, and log the winner
     */
+    const result = document.querySelector('#result');
     function playRound(humanChoice, computerChoice){
         // 9 possible outcome, but draw take 3 out which left 6 conditions
         if(humanChoice === computerChoice){
-            console.log('tie!')
+            result.textContent = 'Round: Tie!';
         }
         else if(humanChoice === 'rock' && computerChoice === 'scissor'){
-            console.log('human win!')
-            humanScore++
+            result.textContent = 'Round: Human win!';
+            humanScore++;
         }
         else if(humanChoice === 'paper' && computerChoice === 'rock'){
-            console.log('human win!')
-            humanScore++
+            result.textContent = 'Round: human win!';
+            humanScore++;
         }
         else if(humanChoice === 'scissor' && computerChoice === 'paper'){
-            console.log('human win!')
-            humanScore++
+            result.textContent = 'Round: human win!';
+            humanScore++;
         }
         else if(humanChoice === 'rock' && computerChoice === 'paper'){
-            console.log('computer win!')
-            computerScore++
+            result.textContent = 'Round: computer win!';
+            computerScore++;
         }
         else if(humanChoice === 'paper' && computerChoice === 'scissor'){
-            console.log('computer win!')
-            computerScore++
+            result.textContent = 'Round: computer win!';
+            computerScore++;
         }
         else if(humanChoice === 'scissor' && computerChoice === 'rock'){
-            console.log('computer win!')
-            computerScore++
+            result.textContent = 'Round: computer win!';
+            computerScore++;
         }
         else{
             throw new Error('ERROR UNKNOWN OUTCOME')
@@ -96,6 +97,19 @@ function playGame(){
                     playRound('scissor', getComputerChoice());
                     break;
                 default:
+            }
+            const score = document.querySelector('#score');
+            score.textContent = `HUMAN: ${humanScore} COMPUTER: ${computerScore}`;
+            
+            if(humanScore >= 5){
+                result.textContent = 'GAME: HUMAN WON THE GAME!';
+                humanScore = 0;
+                computerScore = 0;
+            }
+            else if(computerScore >= 5){
+                result.textContent = 'GAME: COMPUTER WON THE GAME!';
+                humanScore = 0;
+                computerScore = 0;
             }
         });
     });   
